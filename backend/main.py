@@ -39,5 +39,12 @@ async def signup(user: User):
         data = json.load(f)
     data["users"].append(user_dict)
     
+    # auto id
+    new_id = len(data["users"]) + 1
+    user_dict["id"] = new_id
+
+    # append
+    data["users"].append(user_dict)
+    
     with open("./data/users.json", "w") as f:
         json.dump(data, f, indent=4)

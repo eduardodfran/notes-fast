@@ -24,6 +24,18 @@
             "username": "admin@bastadental.com",
             "email": "admin@bastadental.com",
             "password": "4f4e0263b24b35f9b0150e16da4d799e1e725d0e1f881a775a2b91df378c0348"
+        },
+        {
+            "username": "ronald",
+            "email": "ronalddelarosa@gmail.com",
+            "password": "e3385494eb29264c7ee386e003b505fd73394d9544fa554be00dd8f99bcc76e2",
+            "id": 7
+        },
+        {
+            "username": "ronald",
+            "email": "ronalddelarosa@gmail.com",
+            "password": "e3385494eb29264c7ee386e003b505fd73394d9544fa554be00dd8f99bcc76e2",
+            "id": 7
         }
     ]
 }
