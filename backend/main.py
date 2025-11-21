@@ -25,13 +25,13 @@ class User(BaseModel):
     email: str
     password: str
     
-hash_object = hashlib.sha256()
 
-
-
-    
+  
 @app.post("/signup")
 async def signup(user: User):
+    hash_object = hashlib.sha256()
+    hash_object.update(user.password.encode())
+    user.password = hash_object.hexdigest()
     user_dict = user.model_dump()
     print(user_dict)
     data = []

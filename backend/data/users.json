@@ -9,6 +9,21 @@
             "username": "wakin",
             "email": "wakin@gmail.com",
             "password": "wakinwakin"
+        },
+        {
+            "username": "john",
+            "email": "john@gmail.com",
+            "password": "johnjohn"
+        },
+        {
+            "username": "hello",
+            "email": "hello@gmail.com",
+            "password": null
+        },
+        {
+            "username": "admin@bastadental.com",
+            "email": "admin@bastadental.com",
+            "password": "4f4e0263b24b35f9b0150e16da4d799e1e725d0e1f881a775a2b91df378c0348"
         }
     ]
 }
