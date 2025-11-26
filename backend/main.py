@@ -45,3 +45,16 @@ async def signup(user: User):
         json.dump(data, f, indent=4)
         
     return {"message": "User created successfully"}
+
+
+@app.post("/login")
+async def login(user: User):
+    hash_object = hashlib.sha256()
+    hash_object.update(user.password.encode())
+    hashed_password = hash_object.hexdigest()
+    with open("./data/users.json", "r") as f:
+        data = json.load(f)
+    for u in data["users"]:
+        if u["username"] == user.username and u["password"] == hashed_password:
+            return {"message": "Login successful"}
+    return {"message": "Invalid username or password"}
