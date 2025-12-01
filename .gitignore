@@ -70,3 +70,9 @@ temp/
 # Lockfiles for unrelated package managers (optional)
 pnpm-lock.yaml
 yarn.lock
+
+# SQLite database files
+*.sqlite
+*.sqlite3
+*.db
+*.db-journal

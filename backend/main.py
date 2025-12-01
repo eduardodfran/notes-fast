@@ -3,9 +3,12 @@ from pydantic import BaseModel
 from fastapi.middleware.cors import CORSMiddleware
 import json
 import hashlib
-
+import db
 
 app = FastAPI()
+
+db.check_table()
+
 
 origins = [
         "http://localhost:5500",  # Example for a local frontend development server
@@ -25,24 +28,13 @@ class User(BaseModel):
     email: str
     password: str
     
-
   
 @app.post("/signup")
 async def signup(user: User):
     hash_object = hashlib.sha256()
     hash_object.update(user.password.encode())
-    user.password = hash_object.hexdigest()
-    raw_dict = user.model_dump()
-    with open("./data/users.json", "r") as f:
-        data = json.load(f)
-    new_id = len(data["users"]) + 1
-    user_dict = {
-        "id": new_id,
-        **raw_dict
-    }
-    data["users"].append(user_dict)   
-    with open("./data/users.json", "w") as f:
-        json.dump(data, f, indent=4)
+    hashed_password = hash_object.hexdigest()
+    db.insert_user(user.username, user.email, hashed_password)
         
     return {"message": "User created successfully"}
 
@@ -52,9 +44,17 @@ async def login(user: User):
     hash_object = hashlib.sha256()
     hash_object.update(user.password.encode())
     hashed_password = hash_object.hexdigest()
-    with open("./data/users.json", "r") as f:
-        data = json.load(f)
-    for u in data["users"]:
-        if u["username"] == user.username and u["password"] == hashed_password:
-            return {"message": "Login successful"}
-    return {"message": "Invalid username or password"}
+    # check if user exists in db with hashed password
+    con = db.connect_db()
+    cur = con.cursor()
+    res = cur.execute("""
+    SELECT * FROM user WHERE username = ? AND password = ?
+    """, (user.username, hashed_password))
+    user_record = res.fetchone()
+    con.close()
+    # if user exists, return success message
+    if user_record:
+        return {"message": "Login successful"}
+    else:
+        return {"message": "Invalid username or password"}
+    
