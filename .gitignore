@@ -1,18 +1,3 @@
-# OS files
-.DS_Store
-Thumbs.db
-ehthumbs.db
-Desktop.ini
-
-# Node
-node_modules/
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-package-lock.json
-.pnp.*
-.pnpm-debug.log
-
 # Python
 __pycache__/
 *.py[cod]
@@ -20,59 +5,45 @@ __pycache__/
 dist/
 build/
 venv/
+myenv/
 .env
 .env.*
-pip-log.txt
-pip-delete-this-directory.txt
 
 # Logs
-logs/
 *.log
+logs/
 
-# Build / output
-dist/
-build/
-out/
-coverage/
-*.class
+# Database
+*.sqlite
+*.sqlite3
+*.db
+*.db-journal
+backend/data/users.json
 
-# IDEs / editors
+# Node
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+package-lock.json
+
+# Docker
+docker-compose.override.yml
+
+# IDEs/editors
 .vscode/
 .idea/
 *.sublime-workspace
 *.sublime-project
 *.code-workspace
 
-# Secrets / config
-*.pem
-*.key
-*.crt
-secrets.yml
-credentials.json
-*.env
+# OS files
+.DS_Store
+Thumbs.db
+ehthumbs.db
+Desktop.ini
 
-# Containers
-docker-compose.override.yml
-**/Dockerfile.dev
-
-# OS-specific temp files
+# Misc
 *.swp
 *~
 .~*
-
-# Misc
-.gradle/
-*.iml
-coverage/
-tmp/
-temp/
-
-# Lockfiles for unrelated package managers (optional)
-pnpm-lock.yaml
-yarn.lock
-
-# SQLite database files
-*.sqlite
-*.sqlite3
-*.db
-*.db-journal
