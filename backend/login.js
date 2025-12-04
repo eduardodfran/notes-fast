@@ -38,6 +38,9 @@ function loginUser(event) {
     .then((data) => {
       console.log('Success:', data)
       response.textContent = data.message || 'Login successful'
+      if (data.message === 'Login successful') {
+        window.location.href = '/frontend/notes.html' // Redirect to notes page
+      }
     })
     .catch((error) => {
       console.error('Error:', error)
